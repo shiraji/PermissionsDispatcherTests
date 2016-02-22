@@ -8,6 +8,7 @@ import com.github.shiraji.myapplication.R;
 
 import permissions.dispatcher.NeedsPermission;
 import permissions.dispatcher.OnShowRationale;
+import permissions.dispatcher.PermissionRequest;
 import permissions.dispatcher.RuntimePermissions;
 
 @RuntimePermissions
@@ -19,18 +20,28 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    @NeedsPermission(Manifest.permission.CAMERA)
-    void showCamera() {
-        MainActivityPermissionsDispatcher.onRequestPermissionsResult(this, 1, null);
+//    @NeedsPermission(Manifest.permission.CAMERA)
+//    void showCamera() {
+//        MainActivityPermissionsDispatcher.onRequestPermissionsResult(this, 1, null);
+//    }
+
+    @OnShowRationale(Manifest.permission.CAMERA)
+    void onShowRationale(PermissionRequest request) {
     }
 
-    @OnShowRationale({Manifest.permission.INTERNET, Manifest.permission.CAMERA})
-    void onShowRationale() {
+    @NeedsPermission({Manifest.permission.CAMERA, Manifest.permission.BATTERY_STATS})
+    void showCamera2() {
+        MainActivityPermissionsDispatcher.onRequestPermissionsResult(this, 1, null);
     }
+//
+//    @OnShowRationale({Manifest.permission.CAMERA, Manifest.permission.BATTERY_STATS})
+//    void onShowRationale2(PermissionRequest request) {
+//    }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-//        MainActivityPermissionsDispatcher.onRequestPermissionsResult(this, requestCode, grantResults);
+        MainActivityPermissionsDispatcher.onRequestPermissionsResult(this, requestCode, grantResults);
     }
 }
