@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
 //        MainActivityPermissionsDispatcher.onRequestPermissionsResult(this, 1, null);
 //    }
 
-    @OnShowRationale(Manifest.permission.CAMERA)
+    @OnShowRationale({Manifest.permission.CAMERA, Manifest.permission.BATTERY_STATS})
     void onShowRationale(PermissionRequest request) {
     }
 
